@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computer Architecture - Logical Components</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .student-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .unit-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .unit {
+            text-align: center;
+            padding: 20px;
+            width: 200px;
+            background: #fff;
+            border-radius: 10px;
+            margin: 10px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .unit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .unit:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #666;
+        }
+
+        .icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 15px;
+        }
+
+        .unit-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .unit-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .unit-details {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+            display: none;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .unit:hover .unit-details {
+            display: block;
+        }
+
+        .logical-components {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .logical-unit {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .logical-unit:hover {
+            transform: translateY(-5px);
+        }
+
+        .logical-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+        }
+
+        .logical-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .logical-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .registers-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .register-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .register-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+            transition: transform 0.3s;
+        }
+
+        .register-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .bus-diagram {
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .explanation {
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .subsection {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        h3, h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .unit-flow {
+                flex-direction: column;
+            }
+
+            .unit:not(:last-child)::after {
+                content: '↓';
+                right: 50%;
+                bottom: -30px;
+                top: auto;
+                transform: translateX(50%);
+            }
+
+            .unit {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Computer Architecture: Detailed Logical Components</h1>
+            <div class="student-info">
+                Prepared by: Prashant Maurya<br>
+                Roll No: [Your Roll Number]<br>
+                Computer Science Department
+            </div>
+        </div>
+
+        <!-- Basic Units Flow -->
+        <div class="unit-flow">
+            <div class="unit">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path fill="#4CAF50" d="M20,4H4C2.89,4 2,4.89 2,6V18C2,19.11 2.89,20 4,20H20C21.11,20 22,19.11 22,18V6C22,4.89 21.11,4 20,4M20,18H4V6H20V18M13,8H11V16H13V8M17,8H15V16H17V8M9,8H7V16H9V8Z"/>
+                </svg>
+                <div class="unit-name">Input Unit</div>
+                <div class="unit-desc">Receives data and instructions</div>
+                <div class="unit-details">
+                    • Keyboard, Mouse<br>
+                    • Scanner, Microphone<br>
+                    • Data validation<br>
+                    • Input buffering
+                </div>
+            </div>
+
+            <div class="unit">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path fill="#2196F3" d="M17,17H7V7H17M21,11V9H19V7C19,5.89 18.1,5 17,5H15V3H13V5H11V3H9V5H7C5.89,5 5,5.89 5,7V9H3V11H5V13H3V15H5V17C5,18.11 5.89,19 7,19H9V21H11V19H13V21H15V19H17C18.1,19 19,18.11 19,17V15H21V13H19V11H21Z"/>
+                </svg>
+                <div class="unit-name">Memory Unit</div>
+                <div class="unit-desc">Stores programs and data</div>
+                <div class="unit-details">
+                    • RAM, Cache<br>
+                    • Virtual Memory<br>
+                    • Memory Management<br>
+                    • Data buffering
+                </div>
+            </div>
+
+            <div class="unit">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path fill="#FF5722" d="M7,2H17C18.1,2 19,2.9 19,4V20C19,21.1 18.1,22 17,22H7C5.9,22 5,21.1 5,20V4C5,2.9 5.9,2 7,2M7,4V8H17V4H7M7,10V12H9V10H7M11,10V12H13V10H11M15,10V12H17V10H15M7,14V16H9V14H7M11,14V16H13V14H11M15,14V16H17V14H15M7,18V20H9V18H7M11,18V20H13V18H11M15,18V20H17V18H15Z"/>
+                </svg>
+                <div class="unit-name">ALU</div>
+                <div class="unit-desc">Arithmetic and Logic Unit</div>
+                <div class="unit-details">
+                    • Arithmetic operations<br>
+                    • Logic operations<br>
+                    • Floating point<br>
+                    • Status flags
+                </div>
+            </div>
+
+            <div class="unit">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path fill="#9C27B0" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,6A6,6 0 0,0 6,12A6,6 0 0,0 12,18A6,6 0 0,0 18,12A6,6 0 0,0 12,6M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8Z"/>
+                </svg>
+                <div class="unit-name">Control Unit</div>
+                <div class="unit-desc">Coordinates operations</div>
+                <div class="unit-details">
+                    • Instruction decode<br>
+                    • Pipeline control<br>
+                    • Clock management<br>
+                    • Bus control
+                </div>
+            </div>
+
+            <div class="unit">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path fill="#795548" d="M21,16H3V4H21M21,2H3C1.89,2 1,2.89 1,4V16C1,17.11 1.89,18 3,18H10V20H8V22H16V20H14V18H21C22.11,18 23,17.11 23,16V4C23,2.89 22.11,2 21,2Z"/>
+                </svg>
+                <div class="unit-name">Output Unit</div>
+                <div class="unit-desc">Displays results</div>
+                <div class="unit-details">
+                    • Monitor, Printer<br>
+                    • Data formatting<br>
+                    • Output buffering<br>
+                    • Error handling
+                </div>
+            </div>
+        </div>
+
+        <!-- Logical Components -->
+        <div class="logical-components">
+            <div class="logical-unit">
+                <svg class="logical-icon" viewBox="0 0 24 24">
+                    <path fill="#E91E63" d="M7,5H21V7H7V5M7,13V11H21V13H7M4,4.5A1.5,1.5 0 0,1 5.5,6A1.5,1.5 0 0,1 4,7.5A1.5,1.5 0 0,1 2.5,6A1.5,1.5 0 0,1 4,4.5M4,10.5A1.5,1.5 0 0,1 5.5,12A1.5,1.5 0 0,1 4,13.5A1.5,1.5 0 0,1 2.5,12A1.5,1.5 0 0,1 4,10.5M7,19V17H21V19H7M4,16.5A1.5,1.5 0 0,1 5.5,18A1.5,1.5 0 0,1 4,19.5A1.5,1.5 0 0,1 2.5,18A1.5,1.5 0 0,1 4,16.5Z"/>
+                </svg>
+                <div class="logical-title">Instruction Pipeline</div>
+                <div class="logical-desc">
+                    • Fetch<br>
+                    • Decode<br>
+                    • Execute<br>
+                    • Memory Access<br>
+                    • Write Back
+                </div>
+            </div>
+
+            <div class="logical-unit">
+                <svg class="logical-icon" viewBox="0 0 24 24">
+                    <path fill="#4CAF50" d="M3,3H21V21H3V3M5,5V19H19V5H5Z"/>
+                </svg>
+                <div class="logical-title">Cache Hierarchy</div>
+                <div class="logical-desc">
+                    • L1 Cache (Split I/D)<br>
+                    • L2 Cache (Unified)<br>
+                    • L3 Cache (Shared)<br>
+                    • Cache Controller<br>
+                    • Cache Coherency
+                </div>
+            </div>
+
+            <div class="logical-unit">
+                <svg class="logical-icon" viewBox="0 0 24 24">
+                    <path fill="#FF9800" d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H3C1.89,3 1,3.89 1,5V19A2,2 0 0,0 3,21H17A2,2 0 0,0 19,19V5C19,3.89 18.1,3 17,3Z"/>
+              </svg>
+                <div class="logical-title">Memory Management</div>
+                <div class="logical-desc">
+                    • Virtual Memory<br>
+                    • Page Tables<br>
+                    • TLB<br>
+                    • Memory Protection<br>
+                    • Segmentation
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Types Section -->
+        <div class="registers-section">
+            <h3>CPU Registers</h3>
+            <div class="register-grid">
+                <div class="register-item">
+                    <div class="register-title">General Purpose</div>
+                    <div class="register-desc">AX, BX, CX, DX</div>
+                </div>
+                <div class="register-item">
+                    <div class="register-title">Segment</div>
+                    <div class="register-desc">CS, DS, SS, ES</div>
+                </div>
+                <div class="register-item">
+                    <div class="register-title">Index</div>
+                    <div class="register-desc">SI, DI, BP, SP</div>
+                </div>
+                <div class="register-item">
+                    <div class="register-title">Control</div>
+                    <div class="register-desc">IP, FLAGS</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bus Architecture Diagram -->
+        <div class="bus-diagram">
+            <h3>System Bus Architecture</h3>
+            <svg viewBox="0 0 400 200" style="width: 100%; height: 200px;">
+                <!-- Address Bus -->
+                <path d="M50,50 H350" stroke="#FF5722" stroke-width="4" fill="none"/>
+                <text x="200" y="40" text-anchor="middle" fill="#FF5722">Address Bus (32/64 bit)</text>
+                
+                <!-- Data Bus -->
+                <path d="M50,100 H350" stroke="#2196F3" stroke-width="4" fill="none"/>
+                <text x="200" y="90" text-anchor="middle" fill="#2196F3">Data Bus (32/64/128 bit)</text>
+                
+                <!-- Control Bus -->
+                <path d="M50,150 H350" stroke="#4CAF50" stroke-width="4" fill="none"/>
+                <text x="200" y="140" text-anchor="middle" fill="#4CAF50">Control Bus</text>
+                
+                <!-- Connection points -->
+                <circle cx="50" cy="50" r="5" fill="#FF5722"/>
+                <circle cx="350" cy="50" r="5" fill="#FF5722"/>
+                <circle cx="50" cy="100" r="5" fill="#2196F3"/>
+                <circle cx="350" cy="100" r="5" fill="#2196F3"/>
+                <circle cx="50" cy="150" r="5" fill="#4CAF50"/>
+                <circle cx="350" cy="150" r="5" fill="#4CAF50"/>
+            </svg>
+        </div>
+
+        <!-- Additional Components Section -->
+        <div class="explanation">
+            <h3>Additional Components</h3>
+            
+            <div class="subsection">
+                <h4>Interrupt Handling</h4>
+                <p>
+                    • Interrupt Vector Table<br>
+                    • Hardware Interrupts<br>
+                    • Software Interrupts<br>
+                    • Interrupt Priority Levels<br>
+                    • Interrupt Service Routines
+                </p>
+            </div>
+
+            <div class="subsection">
+                <h4>DMA Controller</h4>
+                <p>
+                    • Direct Memory Access Channels<br>
+                    • DMA Transfer Modes<br>
+                    • Memory-to-Memory Transfer<br>
+                    • Burst Mode Operations<br>
+                    • DMA Priority Handling
+                </p>
+            </div>
+
+            <div class="subsection">
+                <h4>Branch Prediction</h4>
+                <p>
+                    • Static Prediction<br>
+                    • Dynamic Prediction<br>
+                    • Branch Target Buffer<br>
+                    • Return Address Stack<br>
+                    • Prediction Accuracy Statistics
+                </p>
+            </div>
+
+            <div class="subsection">
+                <h4>Clock and Timing</h4>
+                <p>
+                    • System Clock Generation<br>
+                    • Clock Distribution Network<br>
+                    • Clock Domains<br>
+                    • Clock Gating for Power Management<br>
+                    • Phase-Locked Loops (PLLs)
+                </p>
+            </div>
+
+            <div class="subsection">
+                <h4>Advanced Features</h4>
+                <p>
+                    • SIMD Instructions<br>
+                    • Virtual Machine Extensions<br>
+                    • Security Features<br>
+                    • Power Management<br>
+                    • Performance Monitoring
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="explanation" style="margin-top: 40px; text-align: center;">
+            <p>© 2025 Computer Architecture Project</p>
+            <p style="color: #666; font-size: 0.9em; margin-top: 10px;">
+                Created using modern web technologies<br>
+                All diagrams and illustrations are original designs
+            </p>
+        </div>
+    </div>
+</body>
+</html>
