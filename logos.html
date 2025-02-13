@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Units Flowchart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .svg-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .unit-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .unit-card {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .unit-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+        .highlight {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-left: 4px solid #2196f3;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Computer Units and Data Flow</h1>
+        
+        <div class="svg-container">
+          <?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600">
+    <!-- Definitions for icons/symbols -->
+    <defs>
+        <!-- Input Device Icon -->
+        <symbol id="input-icon" viewBox="0 0 50 50">
+            <rect x="5" y="15" width="40" height="20" rx="2" fill="#b7e3ff"/>
+            <rect x="10" y="20" width="30" height="10" fill="#fff"/>
+            <circle cx="45" cy="25" r="2" fill="#333"/>
+        </symbol>
+
+        <!-- CPU Icon -->
+        <symbol id="cpu-icon" viewBox="0 0 50 50">
+            <rect x="10" y="10" width="30" height="30" fill="#ffb7b7"/>
+            <rect x="15" y="15" width="20" height="20" fill="#fff"/>
+            <line x1="10" y1="20" x2="5" y2="20" stroke="#333"/>
+            <line x1="10" y1="30" x2="5" y2="30" stroke="#333"/>
+            <line x1="40" y1="20" x2="45" y2="20" stroke="#333"/>
+            <line x1="40" y1="30" x2="45" y2="30" stroke="#333"/>
+        </symbol>
+
+        <!-- Memory Icon -->
+        <symbol id="memory-icon" viewBox="0 0 50 50">
+            <rect x="10" y="5" width="30" height="40" fill="#b7ffb7"/>
+            <rect x="15" y="10" width="20" height="5" fill="#fff"/>
+            <rect x="15" y="20" width="20" height="5" fill="#fff"/>
+            <rect x="15" y="30" width="20" height="5" fill="#fff"/>
+        </symbol>
+
+        <!-- Storage Icon -->
+        <symbol id="storage-icon" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" fill="#e3b7ff"/>
+            <circle cx="25" cy="25" r="8" fill="#fff"/>
+            <circle cx="25" cy="25" r="2" fill="#333"/>
+        </symbol>
+
+        <!-- Output Icon -->
+        <symbol id="output-icon" viewBox="0 0 50 50">
+            <rect x="5" y="10" width="35" height="25" fill="#ffffb7"/>
+            <rect x="8" y="13" width="29" height="19" fill="#fff"/>
+            <rect x="15" y="35" width="15" height="5" fill="#333"/>
+        </symbol>
+
+        <!-- Arrow Marker -->
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+        </marker>
+    </defs>
+
+    <!-- Background -->
+    <rect width="1000" height="600" fill="#f8f9fa"/>
+
+    <!-- Title -->
+    <text x="500" y="50" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">
+        Basic Computer Units Flow
+    </text>
+
+    <!-- Input Devices Section -->
+    <g transform="translate(100,150)">
+        <use href="#input-icon" width="60" height="60"/>
+        <rect x="-10" y="70" width="80" height="80" rx="10" fill="#b7e3ff" stroke="#333"/>
+        <text x="30" y="100" text-anchor="middle" font-size="12" font-weight="bold">Input Devices</text>
+        <text x="30" y="120" text-anchor="middle" font-size="10">Keyboard</text>
+        <text x="30" y="135" text-anchor="middle" font-size="10">Mouse</text>
+    </g>
+
+    <!-- CPU Section -->
+    <g transform="translate(300,150)">
+        <use href="#cpu-icon" width="60" height="60"/>
+        <rect x="-30" y="70" width="120" height="100" rx="10" fill="#ffb7b7" stroke="#333"/>
+        <text x="30" y="90" text-anchor="middle" font-size="12" font-weight="bold">CPU</text>
+        <text x="30" y="110" text-anchor="middle" font-size="10">Control Unit</text>
+        <text x="30" y="125" text-anchor="middle" font-size="10">ALU</text>
+        <text x="30" y="140" text-anchor="middle" font-size="10">Registers</text>
+        <text x="30" y="155" text-anchor="middle" font-size="10">Cache</text>
+    </g>
+
+    <!-- Memory Section -->
+    <g transform="translate(500,150)">
+        <use href="#memory-icon" width="60" height="60"/>
+        <rect x="-20" y="70" width="100" height="80" rx="10" fill="#b7ffb7" stroke="#333"/>
+        <text x="30" y="100" text-anchor="middle" font-size="12" font-weight="bold">Memory</text>
+        <text x="30" y="120" text-anchor="middle" font-size="10">RAM</text>
+        <text x="30" y="135" text-anchor="middle" font-size="10">ROM</text>
+    </g>
+
+    <!-- Storage Section -->
+    <g transform="translate(700,150)">
+        <use href="#storage-icon" width="60" height="60"/>
+        <rect x="-20" y="70" width="100" height="80" rx="10" fill="#e3b7ff" stroke="#333"/>
+        <text x="30" y="100" text-anchor="middle" font-size="12" font-weight="bold">Storage</text>
+        <text x="30" y="120" text-anchor="middle" font-size="10">Hard Drive</text>
+        <text x="30" y="135" text-anchor="middle" font-size="10">SSD</text>
+    </g>
+
+    <!-- Output Section -->
+    <g transform="translate(900,150)">
+        <use href="#output-icon" width="60" height="60"/>
+        <rect x="-20" y="70" width="100" height="80" rx="10" fill="#ffffb7" stroke="#333"/>
+        <text x="30" y="100" text-anchor="middle" font-size="12" font-weight="bold">Output</text>
+        <text x="30" y="120" text-anchor="middle" font-size="10">Monitor</text>
+        <text x="30" y="135" text-anchor="middle" font-size="10">Printer</text>
+    </g>
+
+    <!-- Connection Lines -->
+    <g stroke="#333" stroke-width="2" fill="none" marker-end="url(#arrowhead)">
+        <!-- Input to CPU -->
+        <path d="M170,180 L290,180"/>
+        <!-- CPU to Memory -->
+        <path d="M390,180 L490,180"/>
+        <!-- Memory to Storage -->
+        <path d="M590,180 L690,180"/>
+        <!-- Storage to Output -->
+        <path d="M790,180 L890,180"/>
+    </g>
+
+    <!-- Data Flow Description -->
+    <g transform="translate(100,350)">
+        <rect width="800" height="150" rx="10" fill="white" stroke="#333"/>
+        <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold">Data Flow Process</text>
+        <text x="20" y="60" font-size="14">1. Input devices collect data from user interactions</text>
+        <text x="20" y="85" font-size="14">2. CPU processes the data using Control Unit and ALU</text>
+        <text x="20" y="110" font-size="14">3. Memory (RAM) provides temporary storage for active programs and data</text>
+        <text x="20" y="135" font-size="14">4. Storage devices keep data permanently</text>
+        <text x="20" y="160" font-size="14">5. Output devices display or present the processed results</text>
+    </g>
+</svg>
+        </div>
+
+        <div class="unit-details">
+            <div class="unit-card">
+                <h3>Input Devices</h3>
+                <ul>
+                    <li>Keyboard: Text and command input</li>
+                    <li>Mouse: Pointer control and navigation</li>
+                    <li>Scanner: Document digitization</li>
+                    <li>Microphone: Audio input</li>
+                </ul>
+            </div>
+
+            <div class="unit-card">
+                <h3>CPU Components</h3>
+                <ul>
+                    <li>Control Unit: Manages operations</li>
+                    <li>ALU: Performs calculations</li>
+                    <li>Registers: Ultra-fast storage</li>
+                    <li>Cache: High-speed memory buffer</li>
+                </ul>
+            </div>
+
+            <div class="unit-card">
+                <h3>Memory (RAM)</h3>
+                <ul>
+                    <li>Program storage during execution</li>
+                    <li>Temporary data storage</li>
+                    <li>Fast access speed</li>
+                    <li>Volatile memory</li>
+                </ul>
+            </div>
+
+            <div class="unit-card">
+                <h3>Storage Devices</h3>
+                <ul>
+                    <li>Hard Drive: Large capacity storage</li>
+                    <li>SSD: Fast permanent storage</li>
+                    <li>Non-volatile memory</li>
+                    <li>Data persistence</li>
+                </ul>
+            </div>
+
+            <div class="unit-card">
+                <h3>Output Devices</h3>
+                <ul>
+                    <li>Monitor: Visual display</li>
+                    <li>Printer: Hard copy output</li>
+                    <li>Speakers: Audio output</li>
+                    <li>Projector: Large display output</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <h3>Data Flow Process</h3>
+            <p>The computer processes data in a systematic flow:</p>
+            <ol>
+                <li>Input devices capture user data and convert it to digital form</li>
+                <li>CPU processes this data using its components (Control Unit, ALU)</li>
+                <li>RAM provides fast access to active programs and data</li>
+                <li>Storage devices maintain permanent data records</li>
+                <li>Output devices present the processed results to users</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
